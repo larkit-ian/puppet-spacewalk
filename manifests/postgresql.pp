@@ -16,7 +16,7 @@ class spacewalk::postgresql{
       cwd => '/root',
       path => '/usr/bin:/usr/sbin:/bin:/sbin',
       creates => '/var/www/html/pub/RHN-ORG-TRUSTED-SSL-CERT',
-      command => 'spacewalk-setup --disconnected --answer-file=/tmp/spacewalk.answer; spacewalk-service start; echo "blank" > /tmp/spacewalk.answer',
+      command => 'spacewalk-setup --disconnected --answer-file=/tmp/spacewalk.answer && spacewalk-service start && echo "blank" > /tmp/spacewalk.answer',
       require => Package['spacewalk-postgresql'],
     }
   }
@@ -27,7 +27,7 @@ class spacewalk::postgresql{
       cwd => '/root',
       path => '/usr/bin:/usr/sbin:/bin:/sbin',
       creates => '/var/www/html/pub/RHN-ORG-TRUSTED-SSL-CERT',
-      command => 'spacewalk-setup --disconnected --external-db --answer-file=/tmp/spacewalk.answer; spacewalk-service start; echo "blank" > /tmp/spacewalk.answer',
+      command => 'spacewalk-setup --disconnected --external-db --answer-file=/tmp/spacewalk.answer && spacewalk-service start && echo "blank" > /tmp/spacewalk.answer',
       require => Package['spacewalk-postgresql'],
     }
   }
