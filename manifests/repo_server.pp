@@ -16,7 +16,7 @@ class spacewalk::repo_server
                 cwd     => '/etc/yum.repos.d', 
                 path    => "/usr/bin:/usr/sbin:/bin",
                 creates => '/etc/yum.repos.d/spacewalk.repo',
-                command => 'rpm -Uvh http://yum.spacewalkproject.org/2.0/RHEL/6/x86_64/spacewalk-repo-2.0-3.el6.noarch.rpm'
+                command => 'rpm -Uvh http://yum.spacewalkproject.org/2.1/RHEL/6/x86_64/spacewalk-repo-2.1-2.el6.noarch.rpm'
               }
               
               file {'/etc/yum.repos.d/jpackage-generic.repo':
