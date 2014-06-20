@@ -13,7 +13,7 @@ class spacewalk::client (
   include spacewalk::repo_client
   
   # spacewalk client packages needed
-  $packageList = ['rhn-client-tools','rhn-check', 'rhn-setup', 'm2crypto', 'yum-rhn-plugin']
+  $packageList = ['rhn-client-tools','rhn-check', 'rhn-setup', 'm2crypto', 'yum-rhn-plugin', 'rhncfg-actions']
   
   package {$packageList:
     ensure => installed,
@@ -28,6 +28,16 @@ class spacewalk::client (
     command => "rhnreg_ks --serverUrl=http://$spacewalk_fqdn/XMLRPC --activationkey=$activation_key",
     require => Package[$packageList],
   }
-  
+
+  exec {'enableSpacewalkConfiguration':
+    cwd     => '/root',
+    path    => '/usr/bin:/usr/sbin:/bin',
+    creates => [
+      '/etc/sysconfig/rhn/allowed-actions/configfiles/all',
+      '/etc/sysconfig/rhn/allowed-actions/script/run',
+    ],
+    command => 'rhn-actions-control --enable-all',
+    require => Package['rhncfg-actions'],
+  }
   
 }
