@@ -47,5 +47,16 @@ class spacewalk::client (
     command => 'rhn-actions-control --enable-all',
     require => Package['rhncfg-actions'],
   }
+
+  exec {'deployFilesFromSpacewalkConfigChannel':
+    cwd     => '/root',
+    path    => '/usr/bin:/usr/sbin:/bin',
+    require => [
+      Exec['enableSpacewalkConfiguration'],
+      Exec['getTrustedCertificate'],
+      Exec['registerSpacewalk'],
+    ],
+    command => 'rhncfg-client get',
+  }
   
 }
