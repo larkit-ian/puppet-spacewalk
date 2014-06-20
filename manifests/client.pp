@@ -19,7 +19,15 @@ class spacewalk::client (
     ensure => installed,
     require => Exec['setupSpacewalkClientRepo'],
   }
-  
+
+  exec {'getTrustedCertificate':
+    cwd     => '/root',
+    path    => '/usr/bin:/usr/sbin:/bin',
+    creates => '/usr/share/rhn/RHN-ORG-TRUSTED-SSL-CERT',
+    command => "wget -O /usr/share/rhn/RHN-ORG-TRUSTED-SSL-CERT http://$spacewalk_fqdn/pub/RHN-ORG-TRUSTED-SSL-CERT",
+    require => Package[$packageList],
+  }
+
   # Exec to register with the spacewalk server
   exec {'registerSpacewalk':
     cwd => '/root',
