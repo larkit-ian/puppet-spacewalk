@@ -11,7 +11,7 @@ describe 'spacewalk::channel', :type => :define do
         should contain_exec('mychannel').with({
                                                 'command' => 'spacewalk-channel -a -c mychannel -u puppet -p supersecret',
                                                 'path'    => ["/usr/bin", "/usr/sbin", "/bin", ],
-                                                'unless'  => 'yum -C repolist enabled 2>/dev/null | grep -qw mychannel',
+                                                'unless'  => 'yum -C repolist enabled 2>/dev/null | grep -qw \'mychannel \'',
                                               })
       end
 
@@ -33,7 +33,7 @@ describe 'spacewalk::channel', :type => :define do
         should contain_exec('mychannel').with({
                                                 'command' => 'spacewalk-channel -a -c mychannel -u user -p secret',
                                                 'path'    => ["/usr/bin", "/usr/sbin", "/bin", ],
-                                                'unless'  => 'yum -C repolist enabled 2>/dev/null | grep -qw mychannel',
+                                                'unless'  => 'yum -C repolist enabled 2>/dev/null | grep -qw \'mychannel \'',
                                               })
       end
 
@@ -57,7 +57,7 @@ describe 'spacewalk::channel', :type => :define do
         should contain_exec('mychannel').with({
                                                 'command' => 'spacewalk-channel -a -c testchannel -u user -p secret',
                                                 'path'    => ["/usr/bin", "/usr/sbin", "/bin", ],
-                                                'unless'  => 'yum -C repolist enabled 2>/dev/null | grep -qw testchannel',
+                                                'unless'  => 'yum -C repolist enabled 2>/dev/null | grep -qw \'testchannel \'',
                                               })
       end
 
@@ -81,7 +81,7 @@ describe 'spacewalk::channel', :type => :define do
         should contain_exec('mychannel').with({
                                                 'command' => 'spacewalk-channel -a -c mychannel -u user -p secret',
                                                 'path'    => ["/usr/bin", "/usr/sbin", "/bin", ],
-                                                'unless'  => 'yum -C repolist enabled 2>/dev/null | grep -qw mychannel',
+                                                'unless'  => 'yum -C repolist enabled 2>/dev/null | grep -qw \'mychannel \'',
                                               })
       end
 
@@ -112,7 +112,7 @@ describe 'spacewalk::channel', :type => :define do
         should contain_exec('mychannel').with({
                                                 'command' => 'spacewalk-channel -r -c mychannel -u user -p secret',
                                                 'path'    => ["/usr/bin", "/usr/sbin", "/bin", ],
-                                                'onlyif'  => 'yum -C repolist enabled 2>/dev/null | grep -qw mychannel',
+                                                'onlyif'  => 'yum -C repolist enabled 2>/dev/null | grep -qw \'mychannel \'',
                                               })
       end
 
@@ -135,7 +135,7 @@ describe 'spacewalk::channel', :type => :define do
         should contain_exec('mychannel').with({
                                                 'command' => 'spacewalk-channel -r -c testchannel -u user -p secret',
                                                 'path'    => ["/usr/bin", "/usr/sbin", "/bin", ],
-                                                'onlyif'  => 'yum -C repolist enabled 2>/dev/null | grep -qw testchannel',
+                                                'onlyif'  => 'yum -C repolist enabled 2>/dev/null | grep -qw \'testchannel \'',
                                               })
       end
 
@@ -160,7 +160,7 @@ describe 'spacewalk::channel', :type => :define do
         should contain_exec('mychannel').with({
                                                 'command' => 'spacewalk-channel -r -c mychannel -u user -p secret',
                                                 'path'    => ["/usr/bin", "/usr/sbin", "/bin", ],
-                                                'onlyif'  => 'yum -C repolist enabled 2>/dev/null | grep -qw mychannel',
+                                                'onlyif'  => 'yum -C repolist enabled 2>/dev/null | grep -qw \'mychannel \'',
                                               })
       end
 
