@@ -73,7 +73,7 @@ define spacewalk::channel(
     exec { $title:
       command => "spacewalk-channel ${channel_option} -c ${channel} -u ${username} -p ${password}",
       path    => ['/usr/bin', '/usr/sbin', '/bin', ],
-      unless  => "yum -C repolist enabled 2>/dev/null | grep -qw ${channel}",
+      unless  => "yum -C repolist enabled 2>/dev/null | grep -qw \'${channel} \'",
     }
 
     if $channel_key_id != '' and $channel_key_uri != '' {
