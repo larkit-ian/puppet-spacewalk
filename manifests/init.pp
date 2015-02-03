@@ -92,6 +92,4 @@ class spacewalk (
     source => 'puppet:///modules/spacewalk/zz-spacewalk-server-wsgi.conf',
     require => Exec['setupSpacewalk'],
   }
-  
-  
 }
